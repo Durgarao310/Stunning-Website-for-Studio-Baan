@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[62711,["/_next/static/chunks/0ovikaq_u4wcm.js"],"ViewportBoundary"]
+3:I[62711,["/_next/static/chunks/0ovikaq_u4wcm.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Stunning Website for Studio Baan"}],["$","meta","1",{"name":"description","content":"A modern studio website built with Next.js"}]]}]}]}],null]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"LywQJOc4EDs3CwjFdS40B"}
