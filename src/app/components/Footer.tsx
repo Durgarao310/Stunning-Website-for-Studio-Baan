@@ -63,18 +63,18 @@ export function Footer() {
         <div className="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs opacity-50">
           <p>&copy; 2026 Studio Baan. All rights reserved.</p>
           <div className="flex gap-6">
-            <a
-              href="#"
+            <Link
+              href={siteRoutes.privacy}
               className="cursor-magnetic hover:opacity-100 transition-opacity"
             >
               Privacy Policy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href={siteRoutes.terms}
               className="cursor-magnetic hover:opacity-100 transition-opacity"
             >
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -5,7 +5,9 @@ export type SitePageId =
   | "studio"
   | "process"
   | "journal"
-  | "contact";
+  | "contact"
+  | "privacy"
+  | "terms";
 
 export const siteRoutes = {
   home: "/",
@@ -15,6 +17,8 @@ export const siteRoutes = {
   process: "/process",
   journal: "/journal",
   contact: "/contact",
+  privacy: "/privacy-policy",
+  terms: "/terms-of-service",
 } as const;
 
 export const navigationItems: Array<{
