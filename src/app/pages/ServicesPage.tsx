@@ -1,85 +1,87 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef, useState } from 'react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+"use client";
+
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function ServicesPage() {
   const [activeService, setActiveService] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   const services = [
     {
-      number: '01',
-      title: 'Architecture',
-      subtitle: 'From concept to completion',
+      number: "01",
+      title: "Architecture",
+      subtitle: "From concept to completion",
       description:
-        'We design buildings that respond to their context, enhance human experience, and stand the test of time. Our architectural practice spans residential, commercial, cultural, and institutional typologies.',
+        "We design buildings that respond to their context, enhance human experience, and stand the test of time. Our architectural practice spans residential, commercial, cultural, and institutional typologies.",
       capabilities: [
-        'Concept Design & Master Planning',
-        'Schematic & Design Development',
-        'Construction Documentation',
-        'Construction Administration',
-        'Adaptive Reuse & Renovation',
-        'Sustainable Design Consulting',
+        "Concept Design & Master Planning",
+        "Schematic & Design Development",
+        "Construction Documentation",
+        "Construction Administration",
+        "Adaptive Reuse & Renovation",
+        "Sustainable Design Consulting",
       ],
       image:
-        'https://images.unsplash.com/photo-1760340769739-653d00200baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1760340769739-653d00200baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
     {
-      number: '02',
-      title: 'Interior Design',
-      subtitle: 'Crafting spatial narratives',
+      number: "02",
+      title: "Interior Design",
+      subtitle: "Crafting spatial narratives",
       description:
-        'Our interior design practice creates environments that engage the senses and support how people live and work. We consider every detail, from spatial flow to material selection to custom furniture design.',
+        "Our interior design practice creates environments that engage the senses and support how people live and work. We consider every detail, from spatial flow to material selection to custom furniture design.",
       capabilities: [
-        'Space Planning & Programming',
-        'Material & Finish Selection',
-        'Custom Furniture Design',
-        'Lighting Design',
-        'Art Consultation & Curation',
-        'FF&E Procurement',
+        "Space Planning & Programming",
+        "Material & Finish Selection",
+        "Custom Furniture Design",
+        "Lighting Design",
+        "Art Consultation & Curation",
+        "FF&E Procurement",
       ],
       image:
-        'https://images.unsplash.com/photo-1717076521696-ea6d8ed0963a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1717076521696-ea6d8ed0963a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
     {
-      number: '03',
-      title: 'Product Design',
-      subtitle: 'Objects with soul',
+      number: "03",
+      title: "Product Design",
+      subtitle: "Objects with soul",
       description:
-        'Through our Studio Baan Collection, we design limited-edition furniture and objects that celebrate materiality and craft. Each piece is produced in small batches by skilled artisans.',
+        "Through our Studio Baan Collection, we design limited-edition furniture and objects that celebrate materiality and craft. Each piece is produced in small batches by skilled artisans.",
       capabilities: [
-        'Furniture Design & Prototyping',
-        'Lighting Fixture Design',
-        'Hardware & Accessory Design',
-        'Material Research & Development',
-        'Craft Collaboration',
-        'Limited Edition Production',
+        "Furniture Design & Prototyping",
+        "Lighting Fixture Design",
+        "Hardware & Accessory Design",
+        "Material Research & Development",
+        "Craft Collaboration",
+        "Limited Edition Production",
       ],
       image:
-        'https://images.unsplash.com/photo-1551907234-fb773fb08a2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1551907234-fb773fb08a2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
     {
-      number: '04',
-      title: 'Design Research',
-      subtitle: 'Exploring future possibilities',
+      number: "04",
+      title: "Design Research",
+      subtitle: "Exploring future possibilities",
       description:
-        'We invest in research exploring emerging materials, construction technologies, and design methodologies. This research informs our practice and contributes to advancing the discipline.',
+        "We invest in research exploring emerging materials, construction technologies, and design methodologies. This research informs our practice and contributes to advancing the discipline.",
       capabilities: [
-        'Material Innovation Research',
-        'Computational Design Methods',
-        'Climate-Responsive Strategies',
-        'Circular Economy Applications',
-        'Digital Fabrication Techniques',
-        'Cross-Disciplinary Collaboration',
+        "Material Innovation Research",
+        "Computational Design Methods",
+        "Climate-Responsive Strategies",
+        "Circular Economy Applications",
+        "Digital Fabrication Techniques",
+        "Cross-Disciplinary Collaboration",
       ],
       image:
-        'https://images.unsplash.com/photo-1760389944963-3f2d0d56a1e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1760389944963-3f2d0d56a1e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
   ];
 
@@ -94,8 +96,8 @@ export function ServicesPage() {
         >
           <h1 className="text-5xl md:text-7xl mb-8">What We Do</h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl leading-relaxed">
-            A multidisciplinary practice integrating architecture, interior design, product
-            design, and research to deliver holistic solutions.
+            A multidisciplinary practice integrating architecture, interior
+            design, product design, and research to deliver holistic solutions.
           </p>
         </motion.div>
 
@@ -106,11 +108,11 @@ export function ServicesPage() {
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
               onViewportEnter={() => setActiveService(index)}
             >
-              <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+              <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                 <motion.div
                   className="aspect-[4/3] overflow-hidden bg-secondary/20 mb-8"
                   whileHover={{ scale: 0.98 }}
@@ -124,7 +126,7 @@ export function ServicesPage() {
                 </motion.div>
               </div>
 
-              <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                 <motion.div
                   className="text-8xl md:text-9xl opacity-10 mb-4"
                   initial={{ opacity: 0, x: -40 }}
@@ -208,8 +210,9 @@ export function ServicesPage() {
           >
             <h3 className="text-2xl mb-4">Our Approach</h3>
             <p className="opacity-70 leading-relaxed">
-              Every project begins with listening. We invest time understanding your vision,
-              constraints, and aspirations before proposing solutions.
+              Every project begins with listening. We invest time understanding
+              your vision, constraints, and aspirations before proposing
+              solutions.
             </p>
           </motion.div>
 
@@ -221,8 +224,9 @@ export function ServicesPage() {
           >
             <h3 className="text-2xl mb-4">Collaboration</h3>
             <p className="opacity-70 leading-relaxed">
-              Great work emerges from dialogue. We collaborate closely with clients,
-              consultants, and craftspeople throughout the design process.
+              Great work emerges from dialogue. We collaborate closely with
+              clients, consultants, and craftspeople throughout the design
+              process.
             </p>
           </motion.div>
 
@@ -234,8 +238,9 @@ export function ServicesPage() {
           >
             <h3 className="text-2xl mb-4">Commitment</h3>
             <p className="opacity-70 leading-relaxed">
-              We remain deeply involved from concept through construction, ensuring every
-              detail honors the original vision and maintains quality.
+              We remain deeply involved from concept through construction,
+              ensuring every detail honors the original vision and maintains
+              quality.
             </p>
           </motion.div>
         </div>

@@ -1,70 +1,78 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+"use client";
 
-interface NavigationProps {
-  currentPage: string;
-  onNavigate: (page: string, projectId?: string) => void;
-}
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
+import {
+  getPageIdFromPathname,
+  navigationItems,
+  siteRoutes,
+} from "@/constants/routes";
 
-export function Navigation({ currentPage, onNavigate }: NavigationProps) {
+export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const currentPage = getPageIdFromPathname(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
-    { name: 'Work', id: 'work' },
-    { name: 'Services', id: 'services' },
-    { name: 'Studio', id: 'studio' },
-    { name: 'Journal', id: 'journal' },
-    { name: 'Contact', id: 'contact' },
-  ];
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <>
       <motion.nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        initial={{ backgroundColor: 'rgba(248, 245, 240, 0)' }}
+        initial={{ backgroundColor: "rgba(248, 245, 240, 0)" }}
         animate={{
           backgroundColor: isScrolled
-            ? 'rgba(248, 245, 240, 0.95)'
-            : 'rgba(248, 245, 240, 0)',
+            ? "rgba(248, 245, 240, 0.95)"
+            : "rgba(248, 245, 240, 0)",
         }}
       >
         <div className="max-w-[1800px] mx-auto px-8 md:px-16 py-6 md:py-8 flex items-center justify-between">
-          <motion.button
-            onClick={() => onNavigate('home')}
-            className="cursor-magnetic relative"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <h1 className="text-2xl md:text-3xl tracking-tight">Studio Baan</h1>
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href={siteRoutes.home}
+              className="cursor-magnetic relative block"
+            >
+              <h1 className="text-2xl md:text-3xl tracking-tight">
+                Studio Baan
+              </h1>
+            </Link>
+          </motion.div>
 
           <div className="hidden md:flex items-center gap-12">
-            {menuItems.map((item) => (
-              <motion.button
+            {navigationItems.map((item) => (
+              <motion.div
                 key={item.id}
-                onClick={() => onNavigate(item.id)}
-                className="cursor-magnetic relative text-sm tracking-wide"
+                className="relative"
                 whileHover={{ y: -2 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                {item.name}
+                <Link
+                  href={siteRoutes[item.id]}
+                  className="cursor-magnetic relative block text-sm tracking-wide"
+                >
+                  {item.name}
+                </Link>
                 {currentPage === item.id && (
                   <motion.div
                     className="absolute -bottom-1 left-0 right-0 h-[1px] bg-accent"
                     layoutId="underline"
                   />
                 )}
-              </motion.button>
+              </motion.div>
             ))}
           </div>
 
@@ -74,7 +82,10 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
           >
             <motion.span
               className="w-full h-[1px] bg-foreground"
-              animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 5 : 0 }}
+              animate={{
+                rotate: isMobileMenuOpen ? 45 : 0,
+                y: isMobileMenuOpen ? 5 : 0,
+              }}
             />
             <motion.span
               className="w-full h-[1px] bg-foreground"
@@ -82,7 +93,10 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
             />
             <motion.span
               className="w-full h-[1px] bg-foreground"
-              animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? -5 : 0 }}
+              animate={{
+                rotate: isMobileMenuOpen ? -45 : 0,
+                y: isMobileMenuOpen ? -5 : 0,
+              }}
             />
           </button>
         </div>
@@ -94,19 +108,15 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
         animate={{
           opacity: isMobileMenuOpen ? 1 : 0,
           y: isMobileMenuOpen ? 0 : -100,
-          pointerEvents: isMobileMenuOpen ? 'auto' : 'none',
+          pointerEvents: isMobileMenuOpen ? "auto" : "none",
         }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8">
-          {menuItems.map((item, index) => (
-            <motion.button
+          {navigationItems.map((item, index) => (
+            <motion.div
               key={item.id}
-              onClick={() => {
-                onNavigate(item.id);
-                setIsMobileMenuOpen(false);
-              }}
-              className="text-4xl cursor-magnetic"
+              className="text-4xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: isMobileMenuOpen ? 1 : 0,
@@ -114,8 +124,13 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
               }}
               transition={{ delay: index * 0.1 }}
             >
-              {item.name}
-            </motion.button>
+              <Link
+                href={siteRoutes[item.id]}
+                className="cursor-magnetic block"
+              >
+                {item.name}
+              </Link>
+            </motion.div>
           ))}
         </div>
       </motion.div>

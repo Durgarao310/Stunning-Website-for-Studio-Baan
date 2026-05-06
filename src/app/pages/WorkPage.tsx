@@ -1,25 +1,30 @@
-import { motion } from 'motion/react';
-import { useState } from 'react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { projects, Project } from '../data/projects';
+"use client";
 
-interface WorkPageProps {
-  onNavigate: (page: string, projectId?: string) => void;
-}
+import { useRouter } from "next/navigation";
+import { motion } from "motion/react";
+import { useState } from "react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { projects, Project } from "../data/projects";
+import { getProjectHref } from "@/constants/routes";
 
-export function WorkPage({ onNavigate }: WorkPageProps) {
-  const [activeFilter, setActiveFilter] = useState<'All' | Project['category']>('All');
+export function WorkPage() {
+  const [activeFilter, setActiveFilter] = useState<"All" | Project["category"]>(
+    "All",
+  );
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const router = useRouter();
 
-  const filters: Array<'All' | Project['category']> = [
-    'All',
-    'Architecture',
-    'Interior',
-    'Product',
+  const filters: Array<"All" | Project["category"]> = [
+    "All",
+    "Architecture",
+    "Interior",
+    "Product",
   ];
 
   const filteredProjects =
-    activeFilter === 'All' ? projects : projects.filter(p => p.category === activeFilter);
+    activeFilter === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   return (
     <div className="min-h-screen pt-32 md:pt-40 pb-24">
@@ -38,21 +43,21 @@ export function WorkPage({ onNavigate }: WorkPageProps) {
                 Portfolio
               </h1>
               <p className="text-xl md:text-2xl opacity-60 max-w-2xl leading-relaxed">
-                A comprehensive collection of our work across architecture, interior design,
-                and product design.
+                A comprehensive collection of our work across architecture,
+                interior design, and product design.
               </p>
             </div>
 
             <div className="col-span-12 md:col-span-4 flex items-end md:justify-end">
               <div className="flex flex-wrap md:flex-col gap-3">
-                {filters.map(filter => (
+                {filters.map((filter) => (
                   <motion.button
                     key={filter}
                     onClick={() => setActiveFilter(filter)}
                     className={`px-6 py-3 text-sm tracking-wider transition-colors cursor-magnetic ${
                       activeFilter === filter
-                        ? 'bg-primary text-primary-foreground'
-                        : 'border border-border hover:border-accent hover:text-accent'
+                        ? "bg-primary text-primary-foreground"
+                        : "border border-border hover:border-accent hover:text-accent"
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -77,18 +82,18 @@ export function WorkPage({ onNavigate }: WorkPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -60 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                onClick={() => onNavigate('project', project.id)}
+                onClick={() => router.push(getProjectHref(project.id))}
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
                 <div
                   className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center ${
-                    isEven ? '' : 'lg:direction-rtl'
+                    isEven ? "" : "lg:direction-rtl"
                   }`}
                 >
                   <motion.div
                     className={`lg:col-span-7 overflow-hidden ${
-                      isEven ? '' : 'lg:col-start-6'
+                      isEven ? "" : "lg:col-start-6"
                     }`}
                     whileHover={{ scale: 0.98 }}
                     transition={{ duration: 0.6 }}
@@ -120,9 +125,9 @@ export function WorkPage({ onNavigate }: WorkPageProps) {
 
                   <div
                     className={`lg:col-span-5 ${
-                      isEven ? '' : 'lg:col-start-1 lg:row-start-1'
+                      isEven ? "" : "lg:col-start-1 lg:row-start-1"
                     }`}
-                    style={{ direction: 'ltr' }}
+                    style={{ direction: "ltr" }}
                   >
                     <motion.div
                       initial={{ opacity: 0, x: isEven ? -40 : 40 }}
@@ -131,7 +136,8 @@ export function WorkPage({ onNavigate }: WorkPageProps) {
                       transition={{ duration: 0.8 }}
                     >
                       <p className="text-xs tracking-[0.3em] uppercase text-accent mb-4">
-                        {String(index + 1).padStart(2, '0')} / {project.category}
+                        {String(index + 1).padStart(2, "0")} /{" "}
+                        {project.category}
                       </p>
 
                       <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 group-hover:text-accent transition-colors">
@@ -201,7 +207,9 @@ export function WorkPage({ onNavigate }: WorkPageProps) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-2xl opacity-40">No projects found in this category.</p>
+            <p className="text-2xl opacity-40">
+              No projects found in this category.
+            </p>
           </motion.div>
         )}
       </div>

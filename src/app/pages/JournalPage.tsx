@@ -1,67 +1,70 @@
-import { motion } from 'motion/react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+"use client";
+
+import { motion } from "motion/react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function JournalPage() {
   const articles = [
     {
       id: 1,
-      title: 'The Return to Material Honesty in Contemporary Architecture',
-      category: 'Design Philosophy',
-      date: 'April 28, 2026',
+      title: "The Return to Material Honesty in Contemporary Architecture",
+      category: "Design Philosophy",
+      date: "April 28, 2026",
       image:
-        'https://images.unsplash.com/photo-1640077374000-a647ac62feb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        "https://images.unsplash.com/photo-1640077374000-a647ac62feb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       excerpt:
-        'Exploring how contemporary architects are rediscovering the power of authentic materials and their inherent beauty.',
+        "Exploring how contemporary architects are rediscovering the power of authentic materials and their inherent beauty.",
     },
     {
       id: 2,
-      title: 'Designing for Climate Resilience: Lessons from Nordic Architecture',
-      category: 'Sustainability',
-      date: 'April 15, 2026',
+      title:
+        "Designing for Climate Resilience: Lessons from Nordic Architecture",
+      category: "Sustainability",
+      date: "April 15, 2026",
       image:
-        'https://images.unsplash.com/photo-1549014999-a9e40e71c93b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        "https://images.unsplash.com/photo-1549014999-a9e40e71c93b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       excerpt:
-        'How Scandinavian design principles offer valuable insights for creating climate-adaptive architecture.',
+        "How Scandinavian design principles offer valuable insights for creating climate-adaptive architecture.",
     },
     {
       id: 3,
-      title: 'The Architecture of Silence: Creating Contemplative Spaces',
-      category: 'Craft',
-      date: 'March 30, 2026',
+      title: "The Architecture of Silence: Creating Contemplative Spaces",
+      category: "Craft",
+      date: "March 30, 2026",
       image:
-        'https://images.unsplash.com/photo-1775486134015-cedad4808fea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        "https://images.unsplash.com/photo-1775486134015-cedad4808fea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       excerpt:
-        'In our noisy world, how can architecture provide sanctuary and moments of quiet reflection?',
+        "In our noisy world, how can architecture provide sanctuary and moments of quiet reflection?",
     },
     {
       id: 4,
-      title: 'Reimagining Urban Density with Human-Centered Design',
-      category: 'Urban Planning',
-      date: 'March 12, 2026',
+      title: "Reimagining Urban Density with Human-Centered Design",
+      category: "Urban Planning",
+      date: "March 12, 2026",
       image:
-        'https://images.unsplash.com/photo-1771911650360-31fdb3344c74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        "https://images.unsplash.com/photo-1771911650360-31fdb3344c74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       excerpt:
-        'Balancing density with livability—creating vibrant urban environments that nurture community.',
+        "Balancing density with livability—creating vibrant urban environments that nurture community.",
     },
     {
       id: 5,
-      title: 'Craftsmanship in the Digital Age',
-      category: 'Craft',
-      date: 'February 28, 2026',
+      title: "Craftsmanship in the Digital Age",
+      category: "Craft",
+      date: "February 28, 2026",
       image:
-        'https://images.unsplash.com/photo-1759925689062-5716e45d8d58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        "https://images.unsplash.com/photo-1759925689062-5716e45d8d58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       excerpt:
-        'How digital fabrication and traditional craft can coexist to create extraordinary architecture.',
+        "How digital fabrication and traditional craft can coexist to create extraordinary architecture.",
     },
     {
       id: 6,
-      title: 'Light as Material: Controlling Natural Illumination',
-      category: 'Design Philosophy',
-      date: 'February 10, 2026',
+      title: "Light as Material: Controlling Natural Illumination",
+      category: "Design Philosophy",
+      date: "February 10, 2026",
       image:
-        'https://images.unsplash.com/photo-1765207296039-7ffc2c4b0716?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        "https://images.unsplash.com/photo-1765207296039-7ffc2c4b0716?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
       excerpt:
-        'Exploring how architects shape and choreograph daylight to enhance spatial experience.',
+        "Exploring how architects shape and choreograph daylight to enhance spatial experience.",
     },
   ];
 
@@ -76,8 +79,8 @@ export function JournalPage() {
         >
           <h1 className="text-5xl md:text-7xl mb-6">Journal</h1>
           <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Thoughts on architecture, design philosophy, sustainability, and the craft of
-            building.
+            Thoughts on architecture, design philosophy, sustainability, and the
+            craft of building.
           </p>
         </motion.div>
 
@@ -108,7 +111,9 @@ export function JournalPage() {
                   {article.category}
                 </span>
                 <span className="text-xs text-muted-foreground mx-2">•</span>
-                <span className="text-xs text-muted-foreground">{article.date}</span>
+                <span className="text-xs text-muted-foreground">
+                  {article.date}
+                </span>
               </div>
 
               <h2 className="text-xl md:text-2xl mb-4 group-hover:text-accent transition-colors">

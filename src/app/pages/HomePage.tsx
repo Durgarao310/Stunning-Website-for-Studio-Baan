@@ -1,59 +1,60 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef, useState } from 'react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { ChevronDown, ArrowRight } from 'lucide-react';
+"use client";
 
-interface HomePageProps {
-  onNavigate: (page: string, projectId?: string) => void;
-}
+import { useRouter } from "next/navigation";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ChevronDown, ArrowRight } from "lucide-react";
+import { getProjectHref, siteRoutes } from "@/constants/routes";
 
-export function HomePage({ onNavigate }: HomePageProps) {
+export function HomePage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
   const featuredProjects = [
     {
-      id: 'casa-meridian',
-      title: 'Casa Meridian',
-      category: 'Architecture',
-      location: 'Barcelona',
-      year: '2025',
+      id: "casa-meridian",
+      title: "Casa Meridian",
+      category: "Architecture",
+      location: "Barcelona",
+      year: "2025",
       image:
-        'https://images.unsplash.com/photo-1768223933860-6d62bc5b2ff3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1768223933860-6d62bc5b2ff3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
     {
-      id: 'void-gallery',
-      title: 'The Void Gallery',
-      category: 'Architecture',
-      location: 'Amsterdam',
-      year: '2024',
+      id: "void-gallery",
+      title: "The Void Gallery",
+      category: "Architecture",
+      location: "Amsterdam",
+      year: "2024",
       image:
-        'https://images.unsplash.com/photo-1771678040857-51d00a11be7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1771678040857-51d00a11be7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
     {
-      id: 'lumina-residence',
-      title: 'Lumina Residence',
-      category: 'Interior',
-      location: 'Copenhagen',
-      year: '2024',
+      id: "lumina-residence",
+      title: "Lumina Residence",
+      category: "Interior",
+      location: "Copenhagen",
+      year: "2024",
       image:
-        'https://images.unsplash.com/photo-1775486134015-cedad4808fea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1775486134015-cedad4808fea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
     {
-      id: 'node-chair',
-      title: 'Node Chair',
-      category: 'Product',
-      location: 'Studio Collection',
-      year: '2024',
+      id: "node-chair",
+      title: "Node Chair",
+      category: "Product",
+      location: "Studio Collection",
+      year: "2024",
       image:
-        'https://images.unsplash.com/photo-1626233235316-34e306a47d30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600',
+        "https://images.unsplash.com/photo-1626233235316-34e306a47d30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600",
     },
   ];
 
@@ -88,7 +89,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 className="text-6xl md:text-8xl lg:text-9xl leading-[0.95] tracking-tighter"
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 1,
+                  delay: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
               >
                 Architecture
                 <br />
@@ -105,12 +110,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
               transition={{ duration: 0.8, delay: 0.9 }}
             >
               <p className="text-lg md:text-xl max-w-md opacity-60 leading-relaxed">
-                A multidisciplinary design studio creating architecture, interiors, and
-                objects that celebrate materiality, craft, and spatial experience.
+                A multidisciplinary design studio creating architecture,
+                interiors, and objects that celebrate materiality, craft, and
+                spatial experience.
               </p>
 
               <motion.button
-                onClick={() => onNavigate('work')}
+                onClick={() => router.push(siteRoutes.work)}
                 className="group cursor-magnetic flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -128,7 +134,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           animate={{ opacity: 0.4, y: [0, 10, 0] }}
           transition={{
             opacity: { delay: 1.3 },
-            y: { repeat: Infinity, duration: 2, ease: 'easeInOut' },
+            y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
           }}
         >
           <ChevronDown className="w-6 h-6" />
@@ -145,7 +151,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
             transition={{ duration: 1 }}
           >
             <div className="col-span-12 md:col-span-2">
-              <p className="text-xs tracking-[0.3em] uppercase opacity-40">Featured</p>
+              <p className="text-xs tracking-[0.3em] uppercase opacity-40">
+                Featured
+              </p>
             </div>
             <div className="col-span-12 md:col-span-10">
               <h2 className="text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.1]">
@@ -163,15 +171,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 className="group cursor-magnetic border-t border-border last:border-b"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                onClick={() => onNavigate('project', project.id)}
+                onClick={() => router.push(getProjectHref(project.id))}
               >
                 <div className="grid grid-cols-12 gap-4 md:gap-8 py-8 md:py-12 items-center relative">
                   <div className="col-span-1 text-xs opacity-30">
-                    {String(index + 1).padStart(2, '0')}
+                    {String(index + 1).padStart(2, "0")}
                   </div>
 
                   <div className="col-span-11 md:col-span-5 lg:col-span-4">
@@ -224,7 +232,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             transition={{ duration: 0.8 }}
           >
             <motion.button
-              onClick={() => onNavigate('work')}
+              onClick={() => router.push(siteRoutes.work)}
               className="cursor-magnetic group inline-flex items-center gap-3 text-sm tracking-wider border border-border px-8 py-4 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -250,7 +258,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <p className="text-xs tracking-[0.4em] uppercase mb-8 opacity-50">Philosophy</p>
+            <p className="text-xs tracking-[0.4em] uppercase mb-8 opacity-50">
+              Philosophy
+            </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl mb-12 leading-[1.2] tracking-tight">
               "Design is not just what it looks like and feels like.
               <br className="hidden md:block" />
@@ -270,18 +280,21 @@ export function HomePage({ onNavigate }: HomePageProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-xs tracking-[0.3em] uppercase opacity-40 mb-8">Services</p>
+              <p className="text-xs tracking-[0.3em] uppercase opacity-40 mb-8">
+                Services
+              </p>
               <h2 className="text-4xl md:text-6xl mb-8 leading-tight">
                 What We
                 <br />
                 Create
               </h2>
               <p className="text-lg opacity-60 leading-relaxed mb-8">
-                From architecture to interiors to products—our integrated approach delivers
-                holistic design solutions that consider every detail.
+                From architecture to interiors to products—our integrated
+                approach delivers holistic design solutions that consider every
+                detail.
               </p>
               <motion.button
-                onClick={() => onNavigate('services')}
+                onClick={() => router.push(siteRoutes.services)}
                 className="cursor-magnetic inline-flex items-center gap-3 text-sm tracking-wider border-b border-foreground pb-1 hover:border-accent hover:text-accent transition-colors"
                 whileHover={{ x: 4 }}
               >
@@ -323,19 +336,19 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-border pt-16">
             {[
               {
-                title: 'Architecture',
+                title: "Architecture",
                 description:
-                  'Buildings that respond to context, climate, and culture while creating lasting value.',
+                  "Buildings that respond to context, climate, and culture while creating lasting value.",
               },
               {
-                title: 'Interior Design',
+                title: "Interior Design",
                 description:
-                  'Spatial experiences that engage the senses and enhance how people live and work.',
+                  "Spatial experiences that engage the senses and enhance how people live and work.",
               },
               {
-                title: 'Product Design',
+                title: "Product Design",
                 description:
-                  'Objects and furniture that celebrate materiality, craft, and thoughtful detail.',
+                  "Objects and furniture that celebrate materiality, craft, and thoughtful detail.",
               },
             ].map((service, index) => (
               <motion.div
@@ -346,7 +359,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <h3 className="text-2xl mb-4">{service.title}</h3>
-                <p className="opacity-60 leading-relaxed text-sm">{service.description}</p>
+                <p className="opacity-60 leading-relaxed text-sm">
+                  {service.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -361,7 +376,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-xs tracking-[0.3em] uppercase opacity-40 mb-8">Newsletter</p>
+            <p className="text-xs tracking-[0.3em] uppercase opacity-40 mb-8">
+              Newsletter
+            </p>
             <h2 className="text-3xl md:text-5xl mb-6 leading-tight">
               Stay in the Loop
             </h2>

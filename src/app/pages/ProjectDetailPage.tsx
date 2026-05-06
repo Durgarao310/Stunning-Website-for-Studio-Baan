@@ -1,29 +1,32 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
-import { Project } from '../data/projects';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+"use client";
+
+import { useRouter } from "next/navigation";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
+import { Project } from "../data/projects";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { getProjectHref, siteRoutes } from "@/constants/routes";
 
 interface ProjectDetailPageProps {
   project: Project;
-  onNavigate: (page: string) => void;
-  onNextProject?: () => void;
-  onPrevProject?: () => void;
+  previousProjectId?: string;
+  nextProjectId?: string;
 }
 
 export function ProjectDetailPage({
   project,
-  onNavigate,
-  onNextProject,
-  onPrevProject,
+  previousProjectId,
+  nextProjectId,
 }: ProjectDetailPageProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
@@ -71,7 +74,7 @@ export function ProjectDetailPage({
         </motion.div>
 
         <button
-          onClick={() => onNavigate('work')}
+          onClick={() => router.push(siteRoutes.work)}
           className="absolute top-32 left-8 md:left-16 cursor-magnetic flex items-center gap-2 text-sm tracking-wide opacity-70 hover:opacity-100 transition-opacity"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -84,26 +87,36 @@ export function ProjectDetailPage({
           <div className="lg:col-span-3 lg:sticky lg:top-32 self-start">
             <div className="space-y-8">
               <div>
-                <p className="text-xs tracking-wider uppercase opacity-50 mb-2">Location</p>
+                <p className="text-xs tracking-wider uppercase opacity-50 mb-2">
+                  Location
+                </p>
                 <p className="text-lg">{project.location}</p>
               </div>
               <div>
-                <p className="text-xs tracking-wider uppercase opacity-50 mb-2">Year</p>
+                <p className="text-xs tracking-wider uppercase opacity-50 mb-2">
+                  Year
+                </p>
                 <p className="text-lg">{project.year}</p>
               </div>
               {project.size && (
                 <div>
-                  <p className="text-xs tracking-wider uppercase opacity-50 mb-2">Size</p>
+                  <p className="text-xs tracking-wider uppercase opacity-50 mb-2">
+                    Size
+                  </p>
                   <p className="text-lg">{project.size}</p>
                 </div>
               )}
               <div>
-                <p className="text-xs tracking-wider uppercase opacity-50 mb-2">Status</p>
+                <p className="text-xs tracking-wider uppercase opacity-50 mb-2">
+                  Status
+                </p>
                 <p className="text-lg">{project.status}</p>
               </div>
               {project.client && (
                 <div>
-                  <p className="text-xs tracking-wider uppercase opacity-50 mb-2">Client</p>
+                  <p className="text-xs tracking-wider uppercase opacity-50 mb-2">
+                    Client
+                  </p>
                   <p className="text-lg">{project.client}</p>
                 </div>
               )}
@@ -129,7 +142,9 @@ export function ProjectDetailPage({
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-2xl md:text-3xl leading-relaxed">{project.description}</p>
+              <p className="text-2xl md:text-3xl leading-relaxed">
+                {project.description}
+              </p>
             </motion.div>
 
             <motion.div
@@ -139,7 +154,9 @@ export function ProjectDetailPage({
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl mb-6">The Challenge</h2>
-              <p className="text-lg opacity-70 leading-relaxed">{project.challenge}</p>
+              <p className="text-lg opacity-70 leading-relaxed">
+                {project.challenge}
+              </p>
             </motion.div>
 
             <motion.div
@@ -149,7 +166,9 @@ export function ProjectDetailPage({
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl mb-6">Our Solution</h2>
-              <p className="text-lg opacity-70 leading-relaxed">{project.solution}</p>
+              <p className="text-lg opacity-70 leading-relaxed">
+                {project.solution}
+              </p>
             </motion.div>
           </div>
         </div>
@@ -161,7 +180,7 @@ export function ProjectDetailPage({
               className="aspect-[4/3] overflow-hidden bg-secondary/20"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
             >
               <ImageWithFallback
@@ -223,9 +242,9 @@ export function ProjectDetailPage({
 
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-8 md:px-16 py-16 flex justify-between items-center">
-          {onPrevProject && (
+          {previousProjectId && (
             <motion.button
-              onClick={onPrevProject}
+              onClick={() => router.push(getProjectHref(previousProjectId))}
               className="cursor-magnetic flex items-center gap-3 group"
               whileHover={{ x: -4 }}
             >
@@ -233,9 +252,9 @@ export function ProjectDetailPage({
               <span className="text-sm tracking-wide">Previous Project</span>
             </motion.button>
           )}
-          {onNextProject && (
+          {nextProjectId && (
             <motion.button
-              onClick={onNextProject}
+              onClick={() => router.push(getProjectHref(nextProjectId))}
               className="cursor-magnetic flex items-center gap-3 group ml-auto"
               whileHover={{ x: 4 }}
             >

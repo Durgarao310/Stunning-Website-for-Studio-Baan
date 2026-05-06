@@ -1,72 +1,74 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { useRef, useState } from 'react';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+"use client";
+
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function StudioPage() {
   const [selectedMember, setSelectedMember] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const team = [
     {
-      name: 'Emma Baan',
-      role: 'Founder & Principal Architect',
-      bio: 'Emma founded Studio Baan in 2018 after a decade working with renowned practices across Europe. Her philosophy centers on architecture as a social art, creating spaces that elevate daily life.',
+      name: "Emma Baan",
+      role: "Founder & Principal Architect",
+      bio: "Emma founded Studio Baan in 2018 after a decade working with renowned practices across Europe. Her philosophy centers on architecture as a social art, creating spaces that elevate daily life.",
       image:
-        'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=1000&fit=crop&crop=faces',
-      expertise: ['Architecture', 'Urban Planning', 'Research'],
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=1000&fit=crop&crop=faces",
+      expertise: ["Architecture", "Urban Planning", "Research"],
     },
     {
-      name: 'Lars van Dijk',
-      role: 'Design Director',
-      bio: 'Lars brings fifteen years of experience in computational design and material research. He leads our design innovation initiatives and explores emerging construction technologies.',
+      name: "Lars van Dijk",
+      role: "Design Director",
+      bio: "Lars brings fifteen years of experience in computational design and material research. He leads our design innovation initiatives and explores emerging construction technologies.",
       image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&crop=faces',
-      expertise: ['Computational Design', 'Material Research', 'Fabrication'],
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&crop=faces",
+      expertise: ["Computational Design", "Material Research", "Fabrication"],
     },
     {
-      name: 'Sofia Chen',
-      role: 'Senior Architect',
-      bio: 'Sofia specializes in sustainable architecture and has led several award-winning residential projects. Her work demonstrates how ecological responsibility and design excellence coexist.',
+      name: "Sofia Chen",
+      role: "Senior Architect",
+      bio: "Sofia specializes in sustainable architecture and has led several award-winning residential projects. Her work demonstrates how ecological responsibility and design excellence coexist.",
       image:
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop&crop=faces',
-      expertise: ['Sustainable Design', 'Residential', 'Passive Systems'],
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop&crop=faces",
+      expertise: ["Sustainable Design", "Residential", "Passive Systems"],
     },
     {
-      name: 'Marcus Berg',
-      role: 'Interior Design Lead',
-      bio: 'Marcus brings spatial thinking to every scale. His interior design work has been featured in leading publications for its refined materiality and attention to craft.',
+      name: "Marcus Berg",
+      role: "Interior Design Lead",
+      bio: "Marcus brings spatial thinking to every scale. His interior design work has been featured in leading publications for its refined materiality and attention to craft.",
       image:
-        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&h=1000&fit=crop&crop=faces',
-      expertise: ['Interior Design', 'Custom Furniture', 'Lighting'],
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&h=1000&fit=crop&crop=faces",
+      expertise: ["Interior Design", "Custom Furniture", "Lighting"],
     },
   ];
 
   const values = [
     {
-      title: 'Context',
+      title: "Context",
       description:
-        'Every site has a story. We begin by understanding place—its history, climate, culture, and community. Our work emerges from this understanding.',
+        "Every site has a story. We begin by understanding place—its history, climate, culture, and community. Our work emerges from this understanding.",
     },
     {
-      title: 'Materiality',
+      title: "Materiality",
       description:
-        'Materials are not finishes—they are architecture. We celebrate honest expression of materials, allowing each to speak its inherent language.',
+        "Materials are not finishes—they are architecture. We celebrate honest expression of materials, allowing each to speak its inherent language.",
     },
     {
-      title: 'Craft',
+      title: "Craft",
       description:
-        'Quality is in the details. We collaborate with skilled craftspeople who share our commitment to precision and care in execution.',
+        "Quality is in the details. We collaborate with skilled craftspeople who share our commitment to precision and care in execution.",
     },
     {
-      title: 'Longevity',
+      title: "Longevity",
       description:
-        'We design for the long term, creating architecture that improves with age and adapts to changing needs without losing its essence.',
+        "We design for the long term, creating architecture that improves with age and adapts to changing needs without losing its essence.",
     },
   ];
 
@@ -88,7 +90,9 @@ export function StudioPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <p className="text-xs tracking-[0.3em] uppercase opacity-50 mb-6">About Us</p>
+            <p className="text-xs tracking-[0.3em] uppercase opacity-50 mb-6">
+              About Us
+            </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl mb-8 leading-[0.95] tracking-tighter max-w-4xl">
               A Practice
               <br />
@@ -123,21 +127,22 @@ export function StudioPage() {
               transition={{ duration: 0.8 }}
             >
               <p>
-                Studio Baan was founded in 2018 by Emma Baan with a vision to create
-                architecture that transcends aesthetic trends and addresses fundamental human
-                needs for beauty, shelter, and connection.
+                Studio Baan was founded in 2018 by Emma Baan with a vision to
+                create architecture that transcends aesthetic trends and
+                addresses fundamental human needs for beauty, shelter, and
+                connection.
               </p>
               <p>
-                We are a multidisciplinary practice integrating architecture, interior design,
-                and product design. This integrated approach allows us to consider every
-                scale—from urban planning to door hardware—ensuring coherence between vision
-                and execution.
+                We are a multidisciplinary practice integrating architecture,
+                interior design, and product design. This integrated approach
+                allows us to consider every scale—from urban planning to door
+                hardware—ensuring coherence between vision and execution.
               </p>
               <p>
-                Our work has been recognized with international awards and featured in leading
-                publications, but our greatest satisfaction comes from the enduring
-                relationships we build with clients and the positive impact our projects have
-                on communities.
+                Our work has been recognized with international awards and
+                featured in leading publications, but our greatest satisfaction
+                comes from the enduring relationships we build with clients and
+                the positive impact our projects have on communities.
               </p>
             </motion.div>
           </div>
@@ -152,7 +157,9 @@ export function StudioPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <h3 className="text-2xl mb-4">{value.title}</h3>
-                <p className="text-sm opacity-60 leading-relaxed">{value.description}</p>
+                <p className="text-sm opacity-60 leading-relaxed">
+                  {value.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -170,8 +177,8 @@ export function StudioPage() {
           >
             <h2 className="text-4xl md:text-6xl mb-6">The Team</h2>
             <p className="text-xl opacity-60 max-w-3xl leading-relaxed">
-              A diverse group of architects, designers, and thinkers united by a shared
-              commitment to excellence and innovation.
+              A diverse group of architects, designers, and thinkers united by a
+              shared commitment to excellence and innovation.
             </p>
           </motion.div>
 
@@ -209,15 +216,17 @@ export function StudioPage() {
                 <motion.div
                   initial={false}
                   animate={{
-                    height: selectedMember === index ? 'auto' : 0,
+                    height: selectedMember === index ? "auto" : 0,
                     opacity: selectedMember === index ? 1 : 0,
                   }}
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <p className="text-sm opacity-70 leading-relaxed mb-4">{member.bio}</p>
+                  <p className="text-sm opacity-70 leading-relaxed mb-4">
+                    {member.bio}
+                  </p>
                   <div className="flex flex-wrap gap-2">
-                    {member.expertise.map(skill => (
+                    {member.expertise.map((skill) => (
                       <span
                         key={skill}
                         className="text-xs px-3 py-1 bg-accent/10 text-accent"
@@ -232,7 +241,7 @@ export function StudioPage() {
                   className="mt-4 text-sm tracking-wide opacity-60 hover:opacity-100 transition-opacity"
                   whileHover={{ x: 4 }}
                 >
-                  {selectedMember === index ? 'Show less' : 'Read more'} →
+                  {selectedMember === index ? "Show less" : "Read more"} →
                 </motion.button>
               </motion.div>
             ))}
@@ -252,8 +261,8 @@ export function StudioPage() {
               Interested in working with us?
             </h2>
             <p className="text-lg opacity-70 mb-12 leading-relaxed">
-              We're always looking for talented individuals who share our values and passion
-              for exceptional design.
+              We're always looking for talented individuals who share our values
+              and passion for exceptional design.
             </p>
             <motion.button
               className="px-12 py-5 border border-primary-foreground cursor-magnetic hover:bg-primary-foreground hover:text-primary transition-colors"

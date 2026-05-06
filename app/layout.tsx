@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "../src/styles/index.css";
+import { AppShell } from "@/components/layout/AppShell";
+import { baseMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Stunning Website for Studio Baan",
-  description: "A modern studio website built with Next.js",
-};
+export const metadata: Metadata = baseMetadata;
 
 export default function RootLayout({
   children,
@@ -13,7 +12,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AppShell>{children}</AppShell>
+      </body>
     </html>
   );
 }

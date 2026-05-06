@@ -1,14 +1,14 @@
-import { motion } from 'motion/react';
+"use client";
 
-interface FooterProps {
-  onNavigate?: (page: string) => void;
-}
+import Link from "next/link";
+import { motion } from "motion/react";
+import { footerItems, siteRoutes } from "@/constants/routes";
 
-export function Footer({ onNavigate }: FooterProps = {}) {
+export function Footer() {
   const socialLinks = [
-    { name: 'Instagram', url: '#' },
-    { name: 'LinkedIn', url: '#' },
-    { name: 'Behance', url: '#' },
+    { name: "Instagram", url: "#" },
+    { name: "LinkedIn", url: "#" },
+    { name: "Behance", url: "#" },
   ];
 
   return (
@@ -18,23 +18,23 @@ export function Footer({ onNavigate }: FooterProps = {}) {
           <div>
             <h3 className="text-3xl md:text-4xl mb-6">Studio Baan</h3>
             <p className="text-sm opacity-70 leading-relaxed">
-              Creating timeless architecture that respects context, enhances experience,
-              and celebrates craftsmanship.
+              Creating timeless architecture that respects context, enhances
+              experience, and celebrates craftsmanship.
             </p>
           </div>
 
           <div>
             <h4 className="text-sm tracking-wider mb-4 opacity-50">NAVIGATE</h4>
             <div className="flex flex-col gap-3">
-              {['Work', 'Studio', 'Process', 'Journal', 'Contact'].map((item) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-sm cursor-magnetic inline-block w-fit"
-                  whileHover={{ x: 4 }}
-                >
-                  {item}
-                </motion.a>
+              {footerItems.map((item) => (
+                <motion.div key={item.id} whileHover={{ x: 4 }}>
+                  <Link
+                    href={siteRoutes[item.id]}
+                    className="text-sm cursor-magnetic inline-block w-fit"
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -63,10 +63,16 @@ export function Footer({ onNavigate }: FooterProps = {}) {
         <div className="border-t border-primary-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs opacity-50">
           <p>&copy; 2026 Studio Baan. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="cursor-magnetic hover:opacity-100 transition-opacity">
+            <a
+              href="#"
+              className="cursor-magnetic hover:opacity-100 transition-opacity"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="cursor-magnetic hover:opacity-100 transition-opacity">
+            <a
+              href="#"
+              className="cursor-magnetic hover:opacity-100 transition-opacity"
+            >
               Terms of Service
             </a>
           </div>

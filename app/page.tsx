@@ -1,7 +1,11 @@
-"use client";
+import { HomePage } from "@/app/pages/HomePage";
+import { buildMetadata } from "@/lib/metadata";
 
-import App from "../src/app/App";
+export const metadata = buildMetadata({
+  title: "Architecture, Interiors, Product Design",
+  path: "/",
+});
 
 export default function Page() {
-  return <App />;
+  return <HomePage />;
 }

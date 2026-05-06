@@ -1,5 +1,7 @@
-import { motion } from 'motion/react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+"use client";
+
+import { motion } from "motion/react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export function ContactPage() {
   return (
@@ -13,8 +15,8 @@ export function ContactPage() {
         >
           <h1 className="text-5xl md:text-7xl mb-6">Let's Talk</h1>
           <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
-            Whether you have a project in mind or simply want to discuss architecture, we'd
-            love to hear from you.
+            Whether you have a project in mind or simply want to discuss
+            architecture, we'd love to hear from you.
           </p>
         </motion.div>
 
@@ -26,7 +28,9 @@ export function ContactPage() {
           >
             <form className="space-y-8">
               <div>
-                <label className="block text-sm tracking-wide mb-3">Your Name</label>
+                <label className="block text-sm tracking-wide mb-3">
+                  Your Name
+                </label>
                 <input
                   type="text"
                   className="w-full px-6 py-4 bg-secondary/10 border border-border focus:border-accent focus:outline-none transition-colors"
@@ -35,7 +39,9 @@ export function ContactPage() {
               </div>
 
               <div>
-                <label className="block text-sm tracking-wide mb-3">Email Address</label>
+                <label className="block text-sm tracking-wide mb-3">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   className="w-full px-6 py-4 bg-secondary/10 border border-border focus:border-accent focus:outline-none transition-colors"
@@ -44,7 +50,9 @@ export function ContactPage() {
               </div>
 
               <div>
-                <label className="block text-sm tracking-wide mb-3">Project Type</label>
+                <label className="block text-sm tracking-wide mb-3">
+                  Project Type
+                </label>
                 <select className="w-full px-6 py-4 bg-secondary/10 border border-border focus:border-accent focus:outline-none transition-colors">
                   <option>Select a type</option>
                   <option>Residential</option>
@@ -56,7 +64,9 @@ export function ContactPage() {
               </div>
 
               <div>
-                <label className="block text-sm tracking-wide mb-3">Tell Us More</label>
+                <label className="block text-sm tracking-wide mb-3">
+                  Tell Us More
+                </label>
                 <textarea
                   rows={6}
                   className="w-full px-6 py-4 bg-secondary/10 border border-border focus:border-accent focus:outline-none transition-colors resize-none"
