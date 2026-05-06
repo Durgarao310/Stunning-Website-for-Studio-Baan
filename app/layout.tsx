@@ -11,8 +11,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className="relative">
         <AppShell>{children}</AppShell>
       </body>
     </html>
